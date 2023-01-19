@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+</head>
+<body>
+    {% include 'tcsion/nav.html' %}
+    <div class="container text-center">
+        <h1>Account</h1>
+    {% if user.is_authenticated %}
+    <div class="text-white bg-dark">
+    <h1>Welcome</h1>{{user.username }}
+    </div>
+    <form action="{% url 'logoutuser' %}">
+        {% csrf_token %}
+    <button class="btn btn-success">  Logout </button>
+    </form>
+    
+    {% else %}
+   
+    <form action="{% url 'loginuser' %}">
+        {% csrf_token %}
+    <button class="btn btn-primary">  Login</button>
+    </form>
+    <br>
+    <form action="{% url 'signupuser' %}">
+        {% csrf_token %}
+    <button class="btn btn-primary">  Signupuser</button>
+    </form>
+
+    {% endif %}
+    </div>
+    {% include 'tcsion/footer.html' %}
+</body>
+</html>
